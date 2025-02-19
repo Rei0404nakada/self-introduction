@@ -1,10 +1,27 @@
 import AuthContext from "@/components/providers/AuthProvider";
+import { login } from "@/infrastructure/auth";
 import Head from "next/head";
-import { useContext } from "react";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 
 export default function Home() {
   const {user}= useContext(AuthContext)
-  console.log(user)
+  const [email, setEmail] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const router = useRouter()
+  const handleSubmit = async () => {
+    try {
+      await login(email, password)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  useEffect(() => {
+    if (user) {
+      router.push("/login")
+    }
+  }, [user, router]) 
   return (
     <>
       <Head>
@@ -13,7 +30,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>hello</div>
+      <div>
+        <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
+        <input type="password" onChange={(e) => setPassword(e.target.value)} value={password}/>
+        <button onClick={handleSubmit}>送信</button>
+        
+      </div>
     </>
   );
 }
