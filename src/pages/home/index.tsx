@@ -40,8 +40,8 @@ export default function Login() {
         </div>
       </header>
       <main>
-        <h2>new member</h2>
-        <h1>2025卒内定者紹介</h1>
+        <h2 className={styles.h2}>new member</h2>
+        <h1 className={styles.h1}>2025卒内定者紹介</h1>
         <div className={styles.cardContainer}>
           {members.map((member) => (
             <div key={member.id} className={styles.card}>
@@ -55,8 +55,8 @@ export default function Login() {
       </main>
       <footer className={styles.footer}>
         <p>テキストテキスト</p>
+        <button onClick={handleLogout}>logout</button>
       </footer>
-      <button onClick={handleLogout}>logout</button>
     </div>
   );
 }
