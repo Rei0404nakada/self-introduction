@@ -1,0 +1,148 @@
+/* ヘッダーのスタイル */
+.header {
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end; /* リンクを右寄せ */
+  align-items: center;
+}
+
+.headerNames {
+  display: flex;
+  justify-content: flex-end; /* リンクを右寄せ */
+  align-items: center;
+  gap: 5px; /* リンク間の間隔 */
+}
+
+.headerNames a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.headerNames a:hover {
+  color: #66a69f;
+}
+
+.main {
+  padding: 20px;
+  margin-bottom: 40px;
+  flex: 1; /* メインコンテンツを画面いっぱいに広げる */
+}
+
+.h1 {
+  color: black;
+  margin-bottom: 40px;
+}
+
+.h2 {
+  color: #ff4d4d;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px; /* カード間の間隔を調整 */
+  padding-bottom: 60px;
+}
+
+.card {
+  padding: 30px; /* 余白を増加 */
+  width: 240px; /* 横幅を1.5倍 */
+  height: 400px; /* 縦横比を2:1にする */
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 少し大きめの影 */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* ホバー時の影を強調 */
+}
+
+.card > img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  margin: 10px 0;
+  font-size: 24px;
+}
+
+.card p {
+  font-size: 16px;
+  color: gray;
+  margin-bottom: 15px;
+}
+
+.card > a {
+  display: inline-block;
+  text-decoration: none;
+  background-color: rgb(85, 85, 85);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.card > a:hover {
+  background-color: #66a69f;
+  transform: translateY(-3px);
+}
+
+.card > a:active {
+  transform: translateY(0);
+}
+
+.card.spin {
+  animation: spin-horizontal 1s ease-in-out;
+}
+
+@keyframes spin-horizontal {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(720deg);
+  }
+}
+
+.footer {
+  background-color: #66a69f;
+  color: white;
+  text-align: center;
+  padding: 100px 0;
+  font-size: 14px;
+}
+
+/* ローディングスタイル */
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 中央に配置 */
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: gray;
+  z-index: 9999;
+}
+
+#header,
+#main {
+  display: none;
+}
+
+.loading::before {
+  content: "Loading...";
+  font-size: 3rem;
+}
