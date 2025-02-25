@@ -3,25 +3,26 @@ import { login } from "@/infrastructure/auth";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
+import styles from "@/styles/login.module.css";
 
 export default function Home() {
-  const {user}= useContext(AuthContext)
-  const [email, setEmail] = useState<string>("")
-  const [password, setPassword] = useState<string>("")
-  const router = useRouter()
+  const { user } = useContext(AuthContext);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const router = useRouter();
   const handleSubmit = async () => {
     try {
-      await login(email, password)
+      await login(email, password);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-  
+  };
+
   useEffect(() => {
     if (user) {
-      router.push("/login")
+      router.push("/login");
     }
-  }, [user, router]) 
+  }, [user, router]);
   return (
     <>
       <Head>
@@ -30,11 +31,28 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <input type="email" onChange={(e) => setEmail(e.target.value)} value={email}/>
-        <input type="password" onChange={(e) => setPassword(e.target.value)} value={password}/>
-        <button onClick={handleSubmit}>送信</button>
-        
+      <div className={styles.container}>
+        <div className={styles.form}>
+          <label className={styles.inputArea}>
+            <span>email</span>
+            <input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+          </label>
+          <label className={styles.inputArea}>
+            <span>password</span>
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+          </label>
+          <button onClick={handleSubmit} className={styles.submit}>
+            ログイン
+          </button>
+        </div>
       </div>
     </>
   );
