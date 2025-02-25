@@ -1,7 +1,6 @@
 import AuthContext from "@/components/providers/AuthProvider";
 import { useGetMember } from "@/hooks/useGetMember";
 import { logout } from "@/infrastructure/auth";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
