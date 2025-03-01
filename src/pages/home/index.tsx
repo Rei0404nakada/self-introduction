@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
 import styles from "@/styles/home.module.css";
+import { useAnimateButton } from "@/hooks/useAnimateButton";
 
 export default function Login() {
   const { user } = useContext(AuthContext);
   const router = useRouter();
   const { data: members } = useGetMember();
+  const { selectedMemberId, pending, onClick } = useAnimateButton();
 
   const handleLogout = async () => {
     try {
@@ -33,7 +35,7 @@ export default function Login() {
       <header className={styles.header}>
         <div className={styles.headerNames}>
           {members.map((member) => (
-            <Link key={member.id} href={`/detail?id=${member.id}`}>
+            <Link key={member.id} href={`/details/${member.id}`}>
               {member.name}
             </Link>
           ))}
@@ -44,18 +46,33 @@ export default function Login() {
         <h1 className={styles.h1}>2025卒内定者紹介</h1>
         <div className={styles.cardContainer}>
           {members.map((member) => (
-            <div key={member.id} className={styles.card}>
+            <div
+              key={member.id}
+              className={
+                pending && selectedMemberId === member.id
+                  ? `${styles.spin} ${styles.card}`
+                  : styles.card
+              }
+            >
               <img src={member.userImageUrl} alt={member.name} />
               <p>{member.oneWordComment}</p>
-              <h3>{member.name}</h3>
-              <Link href={`/detail?id=${member.id}`}>READ MORE</Link>
+              <h3 className={styles.h3}>{member.name}</h3>
+              <button
+                disabled={pending && selectedMemberId !== member.id}
+                onClick={() => onClick(member.id)}
+                className={styles.button}
+              >
+                READ MORE
+              </button>
             </div>
           ))}
         </div>
       </main>
       <footer className={styles.footer}>
         <p>テキストテキスト</p>
-        <button onClick={handleLogout}>logout</button>
+        <button className={styles.logoutButton} onClick={handleLogout}>
+          logout
+        </button>
       </footer>
     </div>
   );
