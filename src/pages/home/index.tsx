@@ -25,6 +25,9 @@ export default function Login() {
       rotateY: number;
       shadowX: number;
       shadowY: number;
+      lightX: number;
+      lightY: number;
+      lightOpacity: number;
     };
   }>({});
 
@@ -61,16 +64,38 @@ export default function Login() {
     const shadowX = -rotateY * 3;
     const shadowY = rotateX * 2;
 
+    const lightX = rotateY * 5; // 傾きに応じて光の位置を変化
+    const lightY = -rotateX * 5;
+
+    // 光の強度を、傾きに応じて変更
+    const lightOpacity = Math.min(Math.abs(lightX) + Math.abs(lightY), 1);
+
     setTilt((prev) => ({
       ...prev,
-      [memberId]: { rotateX, rotateY, shadowX, shadowY },
+      [memberId]: {
+        rotateX,
+        rotateY,
+        shadowX,
+        shadowY,
+        lightX,
+        lightY,
+        lightOpacity,
+      },
     }));
   };
 
   const resetTilt = (memberId: string) => {
     setTilt((prev) => ({
       ...prev,
-      [memberId]: { rotateX: 0, rotateY: 0, shadowX: 0, shadowY: 0 },
+      [memberId]: {
+        rotateX: 0,
+        rotateY: 0,
+        shadowX: 0,
+        shadowY: 0,
+        lightX: 0,
+        lightY: 0,
+        lightOpacity: 0,
+      },
     }));
   };
 
@@ -104,9 +129,18 @@ export default function Login() {
                 boxShadow: `${tilt[member.id]?.shadowX || 0}px ${
                   tilt[member.id]?.shadowY || 0
                 }px 20px rgba(0, 0, 0, 0.3)`,
+                border: "1px solid black",
               }}
             >
-              <div className={styles.cardOverlay}></div>
+              <div
+                className={styles.cardOverlay}
+                style={{
+                  opacity: tilt[member.id]?.lightOpacity || 0.2, // 光の強度を調整
+                  transform: `translate(${tilt[member.id]?.lightX || 0}px, ${
+                    tilt[member.id]?.lightY || 0
+                  }px)`, // 光の位置を動かす
+                }}
+              ></div>
               <img src={member.userImageUrl} alt={member.name} />
               <p>{member.oneWordComment}</p>
               <h3 className={styles.h3}>{member.name}</h3>

@@ -49,19 +49,43 @@
 }
 
 .card {
-  padding: 30px; /* 余白を増加 */
-  width: 240px; /* 横幅を1.5倍 */
-  height: 400px; /* 縦横比を2:1にする */
+  position: relative;
+  padding: 30px;
+  width: 240px;
+  height: 400px;
   border-radius: 10px;
   background-color: white;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 少し大きめの影 */
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: #66a69f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* ホバー時の影を強調 */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.2);
+}
+
+.card:hover::before {
+  opacity: 0.4;
 }
 
 .card > img {
