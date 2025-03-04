@@ -56,6 +56,7 @@
   background-color: white;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 少し大きめの影 */
   transition: transform 0.3s, box-shadow 0.3s;
+  border: #66a69f;
 }
 
 .card:hover {
