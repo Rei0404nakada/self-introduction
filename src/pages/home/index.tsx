@@ -61,8 +61,8 @@ export default function Login() {
     const rotateX = -y / 15;
     const rotateY = x / 5;
 
-    const shadowX = -rotateY * 3;
-    const shadowY = rotateX * 2;
+    const shadowX = rotateY * 3;
+    const shadowY = -rotateX * 2;
 
     const lightX = rotateY * 0.9 + -50;
     const lightY = -rotateX * 1.78 + -50;
