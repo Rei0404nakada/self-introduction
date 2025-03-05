@@ -142,7 +142,6 @@ export default function Detail() {
               </p>
             </div>
           </div>
-          <h2 className={styles.subtitleBelowLine}>title</h2>
           <div className={styles.bottomElements}>
             <div className={styles.element}>
               <img
@@ -182,7 +181,7 @@ export default function Detail() {
             {notSelectedMembers.map((member) => (
               <div key={member.id} className={styles.card}>
                 <img src={member.userImageUrl} alt={member.name} />
-                <p>{member.oneWordComment}</p>
+                <p className={styles.comment}>{member.oneWordComment}</p>
                 <h3>{member.name}</h3>
                 <Link href={`/details/${member.id}`}>READ MORE</Link>
               </div>

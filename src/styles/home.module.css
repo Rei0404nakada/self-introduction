@@ -60,34 +60,6 @@
   overflow: hidden;
 }
 
-.card::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 160%;
-  height: 160%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0) 70%
-  );
-  transform: translate(-50%, -50%);
-  opacity: 0.2;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.2);
-}
-
-.card:hover::before {
-  opacity: 0.4;
-}
-
 .card > img {
   border-radius: 50%;
   width: 150px;
@@ -97,34 +69,20 @@
 }
 
 .card h3 {
-  margin: 10px 0;
+  margin-top: 20px;
+  margin-bottom: 30px;
   font-size: 24px;
   font-weight: 100;
 }
 
-.card p {
+.comment {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
   color: gray;
   margin-bottom: 15px;
-}
-
-.card > a {
-  display: inline-block;
-  text-decoration: none;
-  background-color: rgb(85, 85, 85);
-  color: white;
-  padding: 15px 25px;
-  border-radius: 5px;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.card > a:hover {
-  background-color: #66a69f;
-  transform: translateY(-3px);
-}
-
-.card > a:active {
-  transform: translateY(0);
 }
 
 .spin {
@@ -138,7 +96,6 @@
   outline: none;
   padding: 0;
   appearance: none;
-
   display: inline-block;
   text-decoration: none;
   font-size: 16px;

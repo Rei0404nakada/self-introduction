@@ -58,17 +58,16 @@ export default function Login() {
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
 
-    const rotateX = -y / 15; // 縦の傾き（少し控えめ）
-    const rotateY = x / 5; // 横の傾きを強調
+    const rotateX = -y / 15;
+    const rotateY = x / 5;
 
     const shadowX = -rotateY * 3;
     const shadowY = rotateX * 2;
 
-    const lightX = rotateY * 5; // 傾きに応じて光の位置を変化
-    const lightY = -rotateX * 5;
+    const lightX = rotateY * 0.9 + -50;
+    const lightY = -rotateX * 1.78 + -50;
 
-    // 光の強度を、傾きに応じて変更
-    const lightOpacity = Math.min(Math.abs(lightX) + Math.abs(lightY), 1);
+    const lightOpacity = 100;
 
     setTilt((prev) => ({
       ...prev,
@@ -135,14 +134,21 @@ export default function Login() {
               <div
                 className={styles.cardOverlay}
                 style={{
-                  opacity: tilt[member.id]?.lightOpacity || 0.2, // 光の強度を調整
-                  transform: `translate(${tilt[member.id]?.lightX || 0}px, ${
-                    tilt[member.id]?.lightY || 0
-                  }px)`, // 光の位置を動かす
+                  position: `absolute`,
+                  top: `50%`,
+                  left: `50%`,
+                  width: `200%`,
+                  height: `200%`,
+                  background: `radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%)`,
+                  opacity: tilt[member.id]?.lightOpacity || 0,
+                  transform: `translate(${tilt[member.id]?.lightX || -50}%, ${
+                    tilt[member.id]?.lightY || -50
+                  }%)`,
+                  pointerEvents: `none`,
                 }}
               ></div>
               <img src={member.userImageUrl} alt={member.name} />
-              <p>{member.oneWordComment}</p>
+              <p className={styles.comment}>{member.oneWordComment}</p>
               <h3 className={styles.h3}>{member.name}</h3>
               <button
                 disabled={pending && selectedMemberId !== member.id}
