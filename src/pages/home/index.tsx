@@ -139,7 +139,7 @@ export default function Login() {
                   left: `50%`,
                   width: `200%`,
                   height: `200%`,
-                  background: `radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 70%)`,
+                  background: `radial-gradient(circle, rgba(228, 219, 189, 0.3) 0%, rgba(228, 219, 189, 0) 70%)`,
                   opacity: tilt[member.id]?.lightOpacity || 0,
                   transform: `translate(${tilt[member.id]?.lightX || -50}%, ${
                     tilt[member.id]?.lightY || -50
