@@ -186,7 +186,7 @@ export default function Login() {
         </div>
       </main>
       <footer className={styles.footer}>
-        <p>テキストテキスト</p>
+        <p>Copyright © 2025 nakada. All Rights Reserved.</p>
         <button className={styles.logoutButton} onClick={handleLogout}>
           logout
         </button>
