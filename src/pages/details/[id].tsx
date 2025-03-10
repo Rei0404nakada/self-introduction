@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import AuthContext from "@/components/providers/AuthProvider";
 import { useGetMember } from "@/hooks/useGetMember";
 import { logout } from "@/infrastructure/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "@/styles/details.module.css";
 import { useGetSelectedMember } from "@/hooks/useGetSelectedMember";
 import Image from "next/image";
@@ -17,9 +18,7 @@ export default function Detail() {
     members,
     selectedMemberID
   );
-  console.log(selectedMember);
-  console.log(notSelectedMembers);
-  console.log(router.query.id);
+  const [open, setOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -41,6 +40,30 @@ export default function Detail() {
   return (
     <>
       <header className={styles.header}>
+        <input
+          type="checkbox"
+          onClick={() => setOpen((prev) => !prev)}
+          id="menuToggle"
+          className={styles.menuToggle}
+        />
+        <label htmlFor="menuToggle" className={styles.menuBtn}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <nav
+          className={styles.menu}
+          style={{
+            display: open ? "block" : "none",
+          }}
+        >
+          <Link href={"/home"}>HOME</Link>
+          {members.map((member) => (
+            <Link key={member.id} href={`/details/${member.id}`}>
+              {member.name}
+            </Link>
+          ))}
+        </nav>
         <div className={styles.headerNames}>
           <Link href={"/home"}>HOME</Link>
           {members.map((member) => (

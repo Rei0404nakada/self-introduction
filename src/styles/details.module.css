@@ -249,3 +249,69 @@
   appearance: none;
   color: white;
 }
+
+.menuToggle {
+  display: none;
+}
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  padding: 5px;
+}
+.menuBtn span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: #333;
+  transition: 0.3s;
+}
+.menu {
+  background: #333;
+  color: white;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+.menu a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+@media (max-width: 750px) {
+  .profile {
+    flex-direction: column;
+    padding: 0 20px 0 20px;
+  }
+  .profile > img {
+    margin: 0;
+  }
+
+  .bottomElements {
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .element {
+    width: 100%;
+  }
+
+  .customLine {
+    width: 80%;
+  }
+  .headerNames {
+    display: none;
+  }
+
+  .menuBtn {
+    display: flex;
+  }
+}

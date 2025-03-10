@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import AuthContext from "@/components/providers/AuthProvider";
 import { useGetMember } from "@/hooks/useGetMember";
 import { logout } from "@/infrastructure/auth";
@@ -30,6 +31,7 @@ export default function Login() {
       lightOpacity: number;
     };
   }>({});
+  const [open, setOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -46,8 +48,6 @@ export default function Login() {
   }, [user, router]);
 
   if (!user) return null;
-
-  console.log(members);
 
   const handleMouseMove = (
     e: React.MouseEvent<HTMLDivElement>,
@@ -101,6 +101,30 @@ export default function Login() {
   return (
     <div>
       <header className={styles.header}>
+        <input
+          type="checkbox"
+          onClick={() => setOpen((prev) => !prev)}
+          id="menuToggle"
+          className={styles.menuToggle}
+        />
+        <label htmlFor="menuToggle" className={styles.menuBtn}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+        <nav
+          className={styles.menu}
+          style={{
+            display: open ? "block" : "none",
+            zIndex: 10,
+          }}
+        >
+          {members.map((member) => (
+            <Link key={member.id} href={`/details/${member.id}`}>
+              {member.name}
+            </Link>
+          ))}
+        </nav>
         <div className={styles.headerNames}>
           {members.map((member: Member) => (
             <Link key={member.id} href={`/details/${member.id}`}>

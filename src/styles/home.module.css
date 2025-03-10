@@ -138,27 +138,52 @@
   color: white;
 }
 
-/* ローディングスタイル */
-.loading {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* 中央に配置 */
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  color: gray;
-  z-index: 9999;
-}
-
 #header,
 #main {
   display: none;
 }
 
-.loading::before {
-  content: "Loading...";
-  font-size: 3rem;
+.menuToggle {
+  display: none;
+}
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  padding: 5px;
+}
+.menuBtn span {
+  display: block;
+  height: 4px;
+  width: 100%;
+  background-color: #333;
+  transition: 0.3s;
+}
+.menu {
+  background: #333;
+  color: white;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+.menu a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+@media (max-width: 750px) {
+  .headerNames {
+    display: none;
+  }
+  .menuBtn {
+    display: flex;
+  }
 }
