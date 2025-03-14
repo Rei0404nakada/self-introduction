@@ -47,9 +47,23 @@ export default function Detail() {
           className={styles.menuToggle}
         />
         <label htmlFor="menuToggle" className={styles.menuBtn}>
-          <span></span>
-          <span></span>
-          <span></span>
+          <span
+            style={{
+              transform: open
+                ? `translateY(11px) rotate(-315deg)`
+                : `translateY(0px)`,
+              backgroundColor: open ? `red` : `#333`,
+            }}
+          ></span>
+          <span style={{ opacity: open ? 0 : 100 }}></span>
+          <span
+            style={{
+              transform: open
+                ? `translateY(-10px) rotate(315deg)`
+                : `translateY(0px)`,
+              backgroundColor: open ? `red` : `#333`,
+            }}
+          ></span>
         </label>
         <nav
           className={styles.menu}
